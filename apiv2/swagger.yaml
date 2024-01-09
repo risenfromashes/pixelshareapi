@@ -7,7 +7,7 @@ info:
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/ASHRAFURKHAN37/PixelShare/1.0.0
+    url: https://virtserver.swaggerhub.com/ASHRAFURKHAN37/PixelShare/1.0.1
   - url: https://virtserver.swaggerhub.com/fariamou/PixelShare/1.0.0
     description: SwaggerHub API Auto Mocking
   - url: https://PixelShare.com
@@ -99,6 +99,52 @@ paths:
                     created_at:
                       type: string
                       format: date-time
+  /approve/{post_id}:
+      post:
+        summary: Approve a post by post_id
+        parameters:
+          - name: post_id
+            in: path
+            required: true
+            description: ID of the post to be approved
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  admin_approval:
+                    type: boolean
+                    default: true
+        tags:
+          - Posts
+        responses:
+          '200':
+            description: Successful approval
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: Post approved successfully
+          '404':
+            description: Post not found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: Post not found
+                    message:
+                      type: string
+                      example: The specified post ID does not exist
 
     
       
