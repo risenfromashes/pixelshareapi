@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  title: PixelShare_API
+  description: |
+    This is an API hehe2 documentation for our CSE 408 project PixelShare.
+  version: 1.0.1
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/ASHRAFURKHAN37/PixelShare/1.0.0
+  - url: https://virtserver.swaggerhub.com/fariamou/PixelShare/1.0.0
+    description: SwaggerHub API Auto Mocking
+  - url: https://PixelShare.com
+paths:
+  /register:
+    post:
+      tags:
+        - General
+      summary: Register a new user
+      description: Endpoint to register a new user.
+      requestBody:
+        description: User registration details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/register_body'
+        required: true
+      responses:
+        '200':
+          description: User successfully registered
+        '400':
+          description: Bad request - Invalid input
+        '500':
+          description: Internal Server Error
+  /login:
+    post:
+      tags:
+        - General
+      summary: User login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login_body'
+        required: true
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        '400':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+  /logout:
+    post:
+      tags:
+        - General
+      summary: User logout
+      responses:
+        '200':
+          description: Successful logout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        '400':
+          description: Internal Error
+  /posts:
+    summary: Operations related to posts
+    get:
+      summary: Get all posts
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    post_id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    username:
+                      type: string
+                    image_url:
+                      type: string
+                    caption:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+
+    
+      
+components:
+  schemas:
+    register_body:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+    login_body:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    inline_response_200:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Access token for authenticated user
+        userId:
+          type: integer
+          description: ID of the authenticated user
+    inline_response_400:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized
+        message:
+          type: string
+          example: Invalid username or password
+    inline_response_200_1:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Logout successful
+        links:
+          type: object
+          example: https://PixelShare/homepage
+    inline_response_200_2:
+      type: object
+      properties:
+        post_id:
+          type: integer
+        username:
+          type: string
+        image_url:
+          type: string
+        caption:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+            example: buet_cafeteria
+    inline_response_400_1:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Group not found
+        message:
+          type: string
+          example: The specified group ID does not exist
