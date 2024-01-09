@@ -1,8 +1,34 @@
 openapi: 3.0.0
 info:
-  title: PixelShare_API
+  title: PixelShare API Documentation
   description: |
-    This is an API hehe42 documentation for our CSE 408 project PixelShare.
+    Welcome to the Instagram-like App API!
+
+    ## Project Overview
+    This API powers a social media platform inspired by Instagram. It provides various features, including user management, post creation, tag management, and admin moderation capabilities.
+
+    ## Features
+    - User Registration and Authentication
+    - Post Creation and Tagging
+    - Admin Moderation for Group Management
+    - ...
+
+    Explore the API documentation to learn more about available endpoints and functionalities.
+    
+    **Frontend:** Will be built with [Svelte](https://svelte.dev/), a simple and popular approach to building user interfaces.
+      ![Svelte Logo](https://static-00.iconduck.com/assets.00/svelte-icon-2048x2048-bw95wjyb.png)
+    **Backend:** Will be powered by [Express.js](https://expressjs.com/), a framework of [Node.js](https://nodejs.org/), which is a JavaScript runtime for scalable server applications.
+      ![Node.js Logo](https://cdn.iconscout.com/icon/free/png-256/free-nodejs-2-226035.png)
+    **Database:** Will utilize [PostgreSQL](https://www.postgresql.org/), an open-source relational database system known for reliability and advanced features.
+      ![PostgreSQL Logo](https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg)
+    
+    
+
+  
+
+  contact:
+    name: Faria Binta Awal Moushe
+    email: faria12mou@gmail.com
   version: 1.0.1
 servers:
   # Added by API Auto Mocking Plugin
