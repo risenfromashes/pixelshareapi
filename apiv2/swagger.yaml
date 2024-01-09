@@ -196,6 +196,13 @@ paths:
     summary: Operations related to members
     get:
       summary: Get all members
+      parameters:
+          - name: group_id
+            in: path
+            required: true
+            description: ID of the group to view all members
+            schema:
+              type: integer
       tags:
         - Members
       responses:
