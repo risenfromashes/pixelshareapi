@@ -399,8 +399,8 @@ paths:
               schema:
                 type: object
                 properties:
-                  user_id:
-                    type: integer
+                  username:
+                    type: string
                   is_admin:
                     type: boolean
                   profile_picture:
