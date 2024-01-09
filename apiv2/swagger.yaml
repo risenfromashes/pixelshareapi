@@ -192,6 +192,43 @@ paths:
                     message:
                       type: string
                       example: The specified post ID does not exist
+  /delete-post/{post_id}:
+    delete:
+      summary: Delete a post by post_id for a reason
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to be deleted
+          schema:
+            type: integer
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: Successful post deletion
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Post deleted successfully
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Post not found
+                  message:
+                    type: string
+                    example: The specified post ID does not exist
+                    
   /get-all-members/{group_id}:
     summary: Operations related to members
     get:
@@ -426,6 +463,182 @@ paths:
                   message:
                     type: string
                     example: The specified member ID does not exist
+                    
+  /create-tag:
+    post:
+      summary: Create a new tag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                  type: object
+                  properties:
+                    tag_name:
+                      type: string
+                    username:
+                      type: string
+                    time:
+                      type: string
+                      format: date-time
+                    group_id:
+                      type: integer
+        
+                    description:
+                     type: string
+                     description: Description of the tag
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: Successful tag creation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tag created successfully
+                  tag_id:
+                    type: integer
+                    example: 101
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request body
+
+  /add-tag/{post_id}/{tag_id}:
+    post:
+      summary: Add a tag to a post
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post
+          schema:
+            type: integer
+        - name: tag_id
+          in: path
+          required: true
+          description: ID of the tag to be added
+          schema:
+            type: integer
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: Successful tag addition
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tag added to the post successfully
+        '404':
+          description: Post or tag not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Post or tag not found
+                  message:
+                    type: string
+                    example: The specified post or tag ID does not exist
+
+  /remove-tag/{post_id}/{tag_id}:
+    delete:
+      summary: Remove a tag from a post
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post
+          schema:
+            type: integer
+        - name: tag_id
+          in: path
+          required: true
+          description: ID of the tag to be removed
+          schema:
+            type: integer
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: Successful tag removal
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tag removed from the post successfully
+        '404':
+          description: Post or tag not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Post or tag not found
+                  message:
+                    type: string
+                    example: The specified post or tag ID does not exist
+
+  /delete-tag/{tag_id}:
+    delete:
+      summary: Delete a tag
+      parameters:
+        - name: tag_id
+          in: path
+          required: true
+          description: ID of the tag to be deleted
+          schema:
+            type: integer
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: Successful tag deletion
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Tag deleted successfully
+        '404':
+          description: Tag not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Tag not found
+                  message:
+                    type: string
+                    example: The specified tag ID does not exist
                   
 components:
   schemas:
