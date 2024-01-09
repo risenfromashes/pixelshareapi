@@ -192,7 +192,7 @@ paths:
                     message:
                       type: string
                       example: The specified post ID does not exist
-  /get-all-members:
+  /get-all-members/{group_id}:
     summary: Operations related to members
     get:
       summary: Get all members
@@ -334,6 +334,43 @@ paths:
                     registration_status:
                       type: string
                       description: Status of member registration (e.g., "pending")
+                      
+  /remove-member/{user_id}:
+    delete:
+      summary: Remove a member by user_id
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the member to be removed
+          schema:
+            type: integer
+      tags:
+        - Members
+      responses:
+        '200':
+          description: Successful member removal
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Member removed successfully
+        '400':
+          description: Member not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Member not found
+                  message:
+                    type: string
+                    example: The specified member ID does not exist
                   
 components:
   schemas:
