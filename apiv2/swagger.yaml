@@ -944,6 +944,43 @@ paths:
                   message:
                     type: string
                     example: The specified image or group ID does not exist
+  /images-by-tag/{group_id}/{tag_id}:
+    get:
+      summary: Get images by tag
+      description: Retrieve a list of images associated with a specific tag in a group.
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          description: ID of the group
+          schema:
+            type: integer
+        - name: tag_id
+          in: path
+          required: true
+          description: ID of the tag
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagesByTagResponse'
+        '404':
+          description: Group or tag not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Group or tag not found
+                  message:
+                    type: string
+                    example: The specified group or tag ID does not exist
                   
 components:
   schemas:
@@ -1026,6 +1063,24 @@ components:
         similar_images:
           type: array
           description: List of similar images
+          items:
+            type: object
+            properties:
+              image_id:
+                type: integer
+              caption:
+                type: string
+              post_id:
+                type: integer
+              date:
+                type: string
+                format: date
+    ImagesByTagResponse:
+      type: object
+      properties:
+        images:
+          type: array
+          description: List of images associated with the tag
           items:
             type: object
             properties:
