@@ -665,6 +665,171 @@ paths:
                   message:
                     type: string
                     example: The specified tag ID does not exist
+  /add-moderator/{group_id}/{user_id}:
+    post:
+      summary: Add a user as a moderator to a group
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          description: ID of the group
+          schema:
+            type: integer
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to be added as a moderator
+          schema:
+            type: integer
+      tags:
+        - Admin-Moderations
+      responses:
+        '200':
+          description: Successful addition of moderator
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User added as a moderator successfully
+        '404':
+          description: Group or user not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Group or user not found
+                  message:
+                    type: string
+                    example: The specified group or user ID does not exist
+
+  /remove-moderator/{group_id}/{user_id}:
+    delete:
+      summary: Remove a user from the list of moderators in a group
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          description: ID of the group
+          schema:
+            type: integer
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to be removed from moderators
+          schema:
+            type: integer
+      tags:
+        - Admin-Moderations
+      responses:
+        '200':
+          description: Successful removal of moderator
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User removed from moderators successfully
+        '404':
+          description: Group or user not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Group or user not found
+                  message:
+                    type: string
+                    example: The specified group or user ID does not exist
+
+  /leave-moderation/{group_id}:
+    post:
+      summary: Allow a user (moderator) to leave moderation responsibilities for a group
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          description: ID of the group
+          schema:
+            type: integer
+      tags:
+        - Admin-Moderations
+      responses:
+        '200':
+          description: Successful leaving of moderation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User left moderation for the group successfully
+        '404':
+          description: Group not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Group not found
+                  message:
+                    type: string
+                    example: The specified group ID does not exist
+
+  /send-moderation-request/{group_id}/{user_id}:
+    post:
+      summary: Send a moderation request to a user for a group
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          description: ID of the group
+          schema:
+            type: integer
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to whom the moderation request is sent
+          schema:
+            type: integer
+      tags:
+        - Admin-Moderations
+      responses:
+        '200':
+          description: Successful sending of moderation request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Moderation request sent successfully
+        '404':
+          description: Group or user not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Group or user not found
+                  message:
+                    type: string
+                    example: The specified group or user ID does not exist
                   
 components:
   schemas:
