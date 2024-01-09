@@ -70,7 +70,7 @@ paths:
                 $ref: '#/components/schemas/inline_response_200_1'
         '400':
           description: Internal Error
-  /posts:
+  /get-posts:
     summary: Operations related to posts
     get:
       summary: Get all posts
@@ -99,7 +99,7 @@ paths:
                     created_at:
                       type: string
                       format: date-time
-  /approve/{post_id}:
+  /approve-post/{post_id}:
       post:
         summary: Approve a post by post_id
         parameters:
@@ -132,7 +132,7 @@ paths:
                     message:
                       type: string
                       example: Post approved successfully
-          '404':
+          '400':
             description: Post not found
             content:
               application/json:
@@ -146,8 +146,171 @@ paths:
                       type: string
                       example: The specified post ID does not exist
 
-    
-      
+  /reject-post/{post_id}:
+      post:
+        summary: Reject a post by post_id
+        parameters:
+          - name: post_id
+            in: path
+            required: true
+            description: ID of the post to be rejected
+            schema:
+              type: integer
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  admin_approval:
+                    type: boolean
+                    default: false
+        tags:
+          - Posts
+        responses:
+          '200':
+            description: Successful rejection
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: Post rejected successfully
+          '400':
+            description: Post not found
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: Post not found
+                    message:
+                      type: string
+                      example: The specified post ID does not exist
+  /get-all-members:
+    summary: Operations related to members
+    get:
+      summary: Get all members
+      tags:
+        - Members
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    registration_status:
+                      type: string
+                      description: Status of member registration (e.g., "pending", "approved", "rejected")
+
+  /member-approve/{user_id}:
+    post:
+      summary: Approve member registration by user_id
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the member to be approved
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                admin_approval:
+                  type: boolean
+                  default: true
+      tags:
+        - Members
+      responses:
+        '200':
+          description: Successful member approval
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Member approved successfully
+        '400':
+          description: Member not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Member not found
+                  message:
+                    type: string
+                    example: The specified member ID does not exist
+
+  /member-reject/{user_id}:
+    post:
+      summary: Reject member registration by user_id
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the member to be rejected
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                admin_approval:
+                  type: boolean
+                  default: false
+      tags:
+        - Members
+      responses:
+        '200':
+          description: Successful member rejection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Member rejected successfully
+        '404':
+          description: Member not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Member not found
+                  message:
+                    type: string
+                    example: The specified member ID does not exist  
 components:
   schemas:
     register_body:
