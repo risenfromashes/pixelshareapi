@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: PixelShare_API
   description: |
-    This is an API hehe documentation for our CSE 408 project PixelShare.
+    This is an API hehe2 documentation for our CSE 408 project PixelShare.
   version: 1.0.0
 servers:
 - url: https://virtserver.swaggerhub.com/ASHRAFURKHAN37/PixelShare/1.0.0
