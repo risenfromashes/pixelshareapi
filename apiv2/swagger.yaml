@@ -378,6 +378,54 @@ paths:
                   message:
                     type: string
                     example: The specified member ID does not exist
+                    
+  /member-details/{user_id}:
+    get:
+      summary: Get detailed information about a member by user_id
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the member for details retrieval
+          schema:
+            type: integer
+      tags:
+        - Members
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                  is_admin:
+                    type: boolean
+                  profile_picture:
+                    type: string
+                    format: uri
+                  email:
+                    type: string
+                    example: faria12mou@gmail.com
+                  bio:
+                    type: string
+                  address:
+                    type: string
+        '404':
+          description: Member not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Member not found
+                  message:
+                    type: string
+                    example: The specified member ID does not exist
                   
 components:
   schemas:
