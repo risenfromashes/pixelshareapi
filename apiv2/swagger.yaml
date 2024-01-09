@@ -23,6 +23,7 @@ info:
       ![PostgreSQL Logo](https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg)
     
     
+    
 
   
 
@@ -830,6 +831,119 @@ paths:
                   message:
                     type: string
                     example: The specified group or user ID does not exist
+  /search:
+    post:
+      summary: Search for content
+      description: |
+        Perform a search based on specified criteria.
+      tags: 
+        - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: Type of content to search for (e.g., post, user, etc.)
+                orderby:
+                  type: string
+                  description: Field to order the results by (e.g., date, relevance, etc.)
+                query:
+                  type: string
+                  description: Search query string
+                topic:
+                  type: string
+                  description: Topic to narrow down the search
+      responses:
+        '200':
+          description: Successful search
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    description: List of search results
+                    items:
+                      type: object
+                      properties:
+                        post_id:
+                          type: integer
+                        caption:
+                          type: string
+                        group_id:
+                          type: integer
+                        username:
+                          type: string
+                        date:
+                          type: string
+                          format: date
+                        images:
+                          type: array
+                          items:
+                            type: object
+                            
+                                
+                          
+                        
+                     
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid search criteria
+  
+  /similar-images/{group_id}/{image_id}:
+    get:
+      summary: Get similar images
+      description: Retrieve a list of images similar to a specified image in a group.
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          description: ID of the group
+          schema:
+            type: integer
+        - name: image_id
+          in: path
+          required: true
+          description: ID of the reference image
+          schema:
+            type: integer
+      tags:
+        - Search
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimilarImagesResponse'
+        '404':
+          description: Image or group not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Image or group not found
+                  message:
+                    type: string
+                    example: The specified image or group ID does not exist
                   
 components:
   schemas:
@@ -906,3 +1020,21 @@ components:
         message:
           type: string
           example: The specified group ID does not exist
+    SimilarImagesResponse:
+      type: object
+      properties:
+        similar_images:
+          type: array
+          description: List of similar images
+          items:
+            type: object
+            properties:
+              image_id:
+                type: integer
+              caption:
+                type: string
+              post_id:
+                type: integer
+              date:
+                type: string
+                format: date
