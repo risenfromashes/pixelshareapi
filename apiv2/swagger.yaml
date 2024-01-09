@@ -208,8 +208,6 @@ paths:
                 items:
                   type: object
                   properties:
-                    user_id:
-                      type: integer
                     username:
                       type: string
                     email:
@@ -298,7 +296,7 @@ paths:
                   message:
                     type: string
                     example: Member rejected successfully
-        '404':
+        '400':
           description: Member not found
           content:
             application/json:
@@ -310,7 +308,33 @@ paths:
                     example: Member not found
                   message:
                     type: string
-                    example: The specified member ID does not exist  
+                    example: The specified member ID does not exi
+                    
+  /get-member-requests:
+    get:
+      summary: View member requests with some posts
+      tags:
+        - Members
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    registration_status:
+                      type: string
+                      description: Status of member registration (e.g., "pending")
+                  
 components:
   schemas:
     register_body:
