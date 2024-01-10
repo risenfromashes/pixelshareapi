@@ -5,7 +5,10 @@ info:
     Welcome to the Instagram-like App API!
 
     ## Project Overview
-    This API powers a social media platform inspired by Instagram. It provides various features, including user management, post creation, tag management, and admin moderation capabilities.
+    Welcome to PixelShare - Where Creativity Finds a Home!
+
+    🎨 **About PixelShare:**
+    PixelShare is an innovative platform that celebrates visual storytelling, bringing together a vibrant community of creators and enthusiasts. Whether you're an artist, photographer, or simply someone who loves sharing moments, PixelShare empowers you to showcase your creativity in a dynamic and engaging way.
 
     ## Features
     - **User Profile Management:**
@@ -67,6 +70,8 @@ info:
       ![Node.js Logo](https://cdn.iconscout.com/icon/free/png-256/free-nodejs-2-226035.png)
     **Database:** Will utilize [PostgreSQL](https://www.postgresql.org/), an open-source relational database system known for reliability and advanced features.
       ![PostgreSQL Logo](https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg)
+      
+  
     
     
     
