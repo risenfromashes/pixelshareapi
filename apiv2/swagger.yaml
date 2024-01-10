@@ -68,12 +68,21 @@ info:
     
     Explore the API documentation to learn more about available endpoints and functionalities.
     
+    ## System Architecture
+    
     **Frontend:** Will be built with [Svelte](https://svelte.dev/), a simple and popular approach to building user interfaces.
-      ![Svelte Logo](https://static-00.iconduck.com/assets.00/svelte-icon-2048x2048-bw95wjyb.png)
-    **Backend:** Will be powered by [Express.js](https://expressjs.com/), a framework of [Node.js](https://nodejs.org/), which is a JavaScript runtime for scalable server applications.
-      ![Node.js Logo](https://cdn.iconscout.com/icon/free/png-256/free-nodejs-2-226035.png)
-    **Database:** Will utilize [PostgreSQL](https://www.postgresql.org/), an open-source relational database system known for reliability and advanced features.
-      ![PostgreSQL Logo](https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg)
+    
+      <p align='center'><img src='https://kit.svelte.dev/images/svelte-kit-horizontal.svg' alt='gmap Logo' width='300'></p>
+    
+
+    **Database:** Will utilize [PostgreSQL](https://www.postgresql.org/), an open-source relational database system known for reliability and advanced features. We also use the [pgvector](https://github.com/pgvector/pgvector) extension to store embeddings.
+    
+      <p align='center'><img src='https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg' alt='gmap Logo' width='100'></p>
+      
+    **ML Pipeline:** Will utilize [DINOv2 ViT](https://github.com/facebookresearch/dinov2) and [deepface](https://github.com/serengil/deepface) to extract general image and face embeddings. Will utilize [PyTorch](https://pytorch.org/) as the general machine learning framework.
+      
+      <p align='center'><img src='https://upload.wikimedia.org/wikipedia/commons/1/10/PyTorch_logo_icon.svg' alt='gmap Logo' width='70'></p>
+      
       
   
     
