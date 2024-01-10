@@ -1017,9 +1017,80 @@ paths:
                   message:
                     type: string
                     example: The specified user ID does not exist
+  /add-post/{group-id}:
+    post:
+      summary: Add a post to a group
+      description: |
+        Add a new post to a specific group with tags, images, caption, date, and other parameters.
+      parameters:
+        - name: group-id
+          in: path
+          required: true
+          description: ID of the group
+          schema:
+            type: integer
+      tags:
+        - User Side
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPostRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddPostResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request body
                   
 components:
   schemas:
+    AddPostRequest:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              tag_name:
+                type: string
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              image_id:
+                type: integer
+             
+        caption:
+          type: string
+        date:
+          type: string
+          format: date-time
+        
+
+    AddPostResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Post added successfully
     UserNewsfeedResponse:
       type: object
       properties:
