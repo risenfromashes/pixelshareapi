@@ -1057,9 +1057,160 @@ paths:
                   message:
                     type: string
                     example: Invalid request body
-                  
+  /add-comment/{post-id}/{user-id}:
+    post:
+      summary: Add a comment to a post
+      tags: 
+        - User Side
+      description: |
+        Add a new comment to a specific post using the post ID and user ID.
+      parameters:
+        - name: post-id
+          in: path
+          required: true
+          description: ID of the post
+          schema:
+            type: integer
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user adding the comment
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCommentRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddCommentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request body
+  /add-like/{user-id}/{post-id}:
+    post:
+      summary: Add a like to a post
+      tags:
+        - User Side
+      description: |
+        Add a like to a specific post using the user ID and post ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user liking the post
+          schema:
+            type: integer
+        - name: post-id
+          in: path
+          required: true
+          description: ID of the post
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LikeResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request
+
+  /add-dislike/{user-id}/{post-id}:
+    post:
+      summary: Add a dislike to a post
+      tags:
+        - User Side
+      description: |
+        Add a dislike to a specific post using the user ID and post ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user disliking the post
+          schema:
+            type: integer
+        - name: post-id
+          in: path
+          required: true
+          description: ID of the post
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DislikeResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request
 components:
   schemas:
+    LikeResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Like added successfully
+
+    DislikeResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Dislike added successfully
+    AddCommentRequest:
+      type: object
+      properties:
+        comment_text:
+          type: string
+
+    AddCommentResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Comment added successfully
     AddPostRequest:
       type: object
       properties:
