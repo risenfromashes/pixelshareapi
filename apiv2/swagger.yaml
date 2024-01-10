@@ -1305,8 +1305,55 @@ paths:
                   message:
                     type: string
                     example: The specified user ID does not exist
+  /get-my-groups/{user-id}:
+    get:
+      summary: Get user's groups
+      tags:
+        - Profile Management
+      description: |
+        Retrieve a list of groups that a specific user is a part of using the user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupsResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
 components:
   schemas:
+    UserGroupsResponse:
+      type: object
+      properties:
+        groups:
+          type: array
+          description: List of groups the user is a part of
+          items:
+            type: object
+            properties:
+              group_id:
+                type: integer
+              group_name:
+                type: string
     DeleteProfileResponse:
       type: object
       properties:
