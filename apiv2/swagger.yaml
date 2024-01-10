@@ -947,6 +947,8 @@ paths:
   /images-by-tag/{group_id}/{tag_id}:
     get:
       summary: Get images by tag
+      tags:
+        - Search
       description: Retrieve a list of images associated with a specific tag in a group.
       parameters:
         - name: group_id
@@ -981,9 +983,85 @@ paths:
                   message:
                     type: string
                     example: The specified group or tag ID does not exist
+  /newsfeed/{user-id}:
+    get:
+      summary: Get user newsfeed
+      tags:
+        - User Side
+      description: |
+        Retrieve a list of posts for a user's newsfeed, sorted by various criteria.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNewsfeedResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
                   
 components:
   schemas:
+    UserNewsfeedResponse:
+      type: object
+      properties:
+        posts:
+          type: array
+          description: List of posts in the user's newsfeed
+          items:
+            type: object
+            properties:
+              post_id:
+                type: integer
+              title:
+                type: string
+              content:
+                type: string
+              date:
+                type: string
+                format: date-time
+              recommendation_index:
+                type: number
+              groups:
+                type: array
+                items:
+                  type: string
+              seen_by_user:
+                type: boolean
+              tags:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    tag_id:
+                      type: integer
+                    tag_name:
+                      type: string
+                    images:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          image_id:
+                            type: integer
     register_body:
       type: object
       properties:
