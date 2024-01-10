@@ -1218,8 +1218,121 @@ paths:
                   message:
                     type: string
                     example: The specified user ID does not exist
+  /edit-profile/{user-id}:
+    put:
+      tags:
+        - Profile Management
+      summary: Edit user profile
+      description: |
+        Update the profile information for a specific user using the user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditProfileRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditProfileResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request body
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
+  /delete-profile/{user-id}:
+    delete:
+      tags:
+        - Profile Management
+      summary: Delete user profile
+      description: |
+        Delete the profile for a specific user using the user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteProfileResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
 components:
   schemas:
+    DeleteProfileResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Profile deleted successfully
+    EditProfileRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        bio:
+          type: string
+        profile_picture:
+          type: string
+          format: uri
+       
+
+    EditProfileResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Profile updated successfully
     DetailedUserProfileResponse:
       type: object
       properties:
