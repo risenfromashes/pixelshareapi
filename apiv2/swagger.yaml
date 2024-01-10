@@ -1184,8 +1184,81 @@ paths:
                   message:
                     type: string
                     example: Invalid request
+  /get-profile/{user-id}:
+    get:
+      tags:
+        - Profile Management
+      summary: Get user profile
+      description: |
+        Retrieve the detailed profile information for a specific user using the user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedUserProfileResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
 components:
   schemas:
+    DetailedUserProfileResponse:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        bio:
+          type: string
+        profile_picture:
+          type: string
+          format: uri
+        posts:
+          type: array
+          description: List of posts by the user
+          items:
+            type: object
+            properties:
+              post_id:
+                type: integer
+              title:
+                type: string
+              content:
+                type: string
+              date:
+                type: string
+                format: date-time
+        groups:
+          type: array
+          description: List of groups the user is a part of
+          items:
+            type: object
+            properties:
+              group_id:
+                type: integer
+              group_name:
+                type: string
     LikeResponse:
       type: object
       properties:
