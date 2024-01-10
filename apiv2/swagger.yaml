@@ -1339,8 +1339,241 @@ paths:
                   message:
                     type: string
                     example: The specified user ID does not exist
+  /get-rules/{user-id}:
+    get:
+      tags:
+        - Rule Management
+      summary: Get user's rules
+      description: |
+        Retrieve a list of rules for a specific user using the user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRulesResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
+
+  /add-rule/{user-id}:
+    post:
+      tags:
+        - Rule Management
+      summary: Add a rule for the user
+      description: |
+        Add a new rule for a specific user using the user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRuleRequest'
+      responses:
+        '201':
+          description: Rule added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request body
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
+
+  /delete-rule/{user-id}:
+    delete:
+      tags:
+        - Rule Management
+      summary: Delete a rule for the user
+      description: |
+        Delete a specific rule for a user using the user ID and rule ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+        - name: rule-id
+          in: query
+          required: true
+          description: ID of the rule
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Rule deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteRuleResponse'
+        '404':
+          description: Rule not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Rule not found
+                  message:
+                    type: string
+                    example: The specified rule ID does not exist
+
+  /update-rule/{user-id}:
+    put:
+      tags:
+        - Rule Management
+      summary: Update a rule for the user
+      description: |
+        Update a specific rule for a user using the user ID and rule ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRuleRequest'
+      responses:
+        '200':
+          description: Rule updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad request
+                  message:
+                    type: string
+                    example: Invalid request body
+        '404':
+          description: Rule not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Rule not found
+                  message:
+                    type: string
+                    example: The specified rule ID does not exist
 components:
   schemas:
+    UserRulesResponse:
+      type: object
+      properties:
+        rules:
+          type: array
+          description: List of rules for the user
+          items:
+            $ref: '#/components/schemas/RuleResponse'
+
+    AddRuleRequest:
+      type: object
+      properties:
+        group_id:
+          type: integer
+        description:
+          type: string
+        
+
+    UpdateRuleRequest:
+      type: object
+      properties:
+        rule_id:
+          type: integer
+        group_id:
+          type: integer
+        description:
+          type: string
+       
+
+    RuleResponse:
+      type: object
+      properties:
+        rule_id:
+          type: integer
+        group_id:
+          type: integer
+        description:
+          type: string
+        date_created:
+          type: string
+          format: date-time
+        admin_created_by:
+          type: string
+
+    DeleteRuleResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Rule deleted successfully
     UserGroupsResponse:
       type: object
       properties:
