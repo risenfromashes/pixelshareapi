@@ -8,11 +8,57 @@ info:
     This API powers a social media platform inspired by Instagram. It provides various features, including user management, post creation, tag management, and admin moderation capabilities.
 
     ## Features
-    - User Registration and Authentication
-    - Post Creation and Tagging
-    - Admin Moderation for Group Management
-    - ...
+    - **User Profile Management:**
+      - View user profile details.
+      - Edit user profile information.
+      - Delete user profile.
+      - Retrieve user's groups and posts.
+    - **Group Management:**
+      - Create a new group.
+      - View group details.
+      - Edit group information.
+      - Delete a group.
+    - **Rules Management:**
+      - Get rules for a user.
+      - Add a new rule for a user.
+      - Delete a specific rule for a user.
+      - Update a specific rule for a user.
+    - **Post Management:**
+      - Create a new post.
+      - View all posts in a group.
+      - Approve posts by an admin.
+      - Delete a post.
+      - View post details, including comments and likes.
 
+    - **Tag Management:**
+      - Create a new tag.
+      - Add or remove tags from a post.
+      - Delete a tag.
+
+    - **Admin Moderation:**
+      - Add or remove moderators for a group.
+      - Leave group moderation.
+      - Send moderation requests.
+
+    - **Member Moderation:**
+      - View members and their posts.
+      - Approve or reject member requests.
+      - Remove a member from the group.
+
+    - **Search:**
+      - Search for posts based on various parameters.
+      - View similar images.
+      - Retrieve posts sorted by date, recommendation index, groups, and seen/unseen status.
+
+    - **Newsfeed:**
+      - Get a personalized newsfeed of posts.
+      - View posts with tags, images, and comments.
+
+    - **Other Functionalities:**
+      - User authentication and authorization.
+      - Error handling for various scenarios.
+      - Interactive API documentation using Swagger UI.
+    
     Explore the API documentation to learn more about available endpoints and functionalities.
     
     **Frontend:** Will be built with [Svelte](https://svelte.dev/), a simple and popular approach to building user interfaces.
