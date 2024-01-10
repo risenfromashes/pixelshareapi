@@ -1,8 +1,9 @@
 openapi: 3.0.0
+
 info:
   title: PixelShare API Documentation
   description: |
-    Welcome to the Instagram-like App API!
+    Welcome to the PixelShare API Documentation!
 
     ## Project Overview
     Welcome to PixelShare - Where Creativity Finds a Home!
