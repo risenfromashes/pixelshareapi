@@ -74,12 +74,12 @@ info:
     
     **Backend and API:** Will be build using [SvelteKit](https://kit.svelte.dev/), a full-stack web framework that integrates with svelte.
     
-      <p align='center'><img src='https://kit.svelte.dev/images/svelte-kit-horizontal.svg' alt='gmap Logo' width='300'></p>
+      <p align='center'><img src='https://kit.svelte.dev/images/svelte-kit-horizontal.svg' alt='gmap Logo' width='250'></p>
     
 
     **Database:** Will utilize [PostgreSQL](https://www.postgresql.org/), an open-source relational database system known for reliability and advanced features. We also use the [pgvector](https://github.com/pgvector/pgvector) extension to store embeddings.
     
-      <p align='center'><img src='https://www.vectorlogo.zone/logos/postgresql/postgresql-horizontal.svg' alt='gmap Logo' width='300'></p>
+      <p align='center'><img src='https://www.vectorlogo.zone/logos/postgresql/postgresql-horizontal.svg' alt='gmap Logo' width='250'></p>
       
     **ML Pipeline:** Will utilize [DINOv2 ViT](https://github.com/facebookresearch/dinov2) and [deepface](https://github.com/serengil/deepface) to extract general image and face embeddings. We will utilize [PyTorch](https://pytorch.org/) as the general machine learning framework.
       <p align='center'>
