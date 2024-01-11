@@ -72,16 +72,21 @@ info:
     
     **Frontend:** Will be built with [Svelte](https://svelte.dev/), a simple and popular approach to building user interfaces.
     
+    **Backend and API:** Will be build using [SvelteKit](https://kit.svelte.dev/), a full-stack web framework that integrates with svelte.
+    
       <p align='center'><img src='https://kit.svelte.dev/images/svelte-kit-horizontal.svg' alt='gmap Logo' width='300'></p>
     
 
     **Database:** Will utilize [PostgreSQL](https://www.postgresql.org/), an open-source relational database system known for reliability and advanced features. We also use the [pgvector](https://github.com/pgvector/pgvector) extension to store embeddings.
     
-      <p align='center'><img src='https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg' alt='gmap Logo' width='100'></p>
+      <p align='center'><img src='https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg' alt='gmap Logo' width='70'></p>
       
-    **ML Pipeline:** Will utilize [DINOv2 ViT](https://github.com/facebookresearch/dinov2) and [deepface](https://github.com/serengil/deepface) to extract general image and face embeddings. Will utilize [PyTorch](https://pytorch.org/) as the general machine learning framework.
+    **ML Pipeline:** Will utilize [DINOv2 ViT](https://github.com/facebookresearch/dinov2) and [deepface](https://github.com/serengil/deepface) to extract general image and face embeddings. We will utilize [PyTorch](https://pytorch.org/) as the general machine learning framework.
+      <p align='center'>
+        <img src='https://upload.wikimedia.org/wikipedia/commons/1/10/PyTorch_logo_icon.svg' alt='Logo' width='50'>
+      </p>
       
-      <p align='center'><img src='https://upload.wikimedia.org/wikipedia/commons/1/10/PyTorch_logo_icon.svg' alt='gmap Logo' width='70'></p>
+    **Architecture:** Our system will be built using the microservice architecture.
       
       
   
