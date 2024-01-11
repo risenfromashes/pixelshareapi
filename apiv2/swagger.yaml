@@ -12,7 +12,7 @@ info:
     Explore the source code on [GitHub](https://github.com/risenfromashes/pixelshare).
 
     🎨 **About PixelShare:**
-    PixelShare is an innovative platform that celebrates visual storytelling, bringing together a vibrant community of creators and enthusiasts. Whether you're an artist, photographer, or simply someone who loves sharing moments, PixelShare empowers you to showcase your creativity in a dynamic and engaging way.
+    PixelShare is an innovative platform that celebrates visual storytelling, bringing together a vibrant community. Whether you're a photographer, or simply someone who loves sharing moments, PixelShare enables you to share wonderful moments with your friends and showcase your creativity.
 
     ## Features
     - **User Profile Management:**
@@ -79,17 +79,25 @@ info:
 
     **Database:** Will utilize [PostgreSQL](https://www.postgresql.org/), an open-source relational database system known for reliability and advanced features. We also use the [pgvector](https://github.com/pgvector/pgvector) extension to store embeddings.
     
-      <p align='center'><img src='https://upload.wikimedia.org/wikipedia/commons/b/ba/Database-postgres.svg' alt='gmap Logo' width='70'></p>
+      <p align='center'><img src='https://www.vectorlogo.zone/logos/postgresql/postgresql-horizontal.svg' alt='gmap Logo' width='300'></p>
       
     **ML Pipeline:** Will utilize [DINOv2 ViT](https://github.com/facebookresearch/dinov2) and [deepface](https://github.com/serengil/deepface) to extract general image and face embeddings. We will utilize [PyTorch](https://pytorch.org/) as the general machine learning framework.
       <p align='center'>
-        <img src='https://upload.wikimedia.org/wikipedia/commons/1/10/PyTorch_logo_icon.svg' alt='Logo' width='50'>
+        <img src='https://www.vectorlogo.zone/logos/pytorch/pytorch-ar21.svg' alt='Logo' width='200'>
       </p>
       
-    **Architecture:** Our system will be built using the microservice architecture.
+    **Architecture:** Our system will be built using the **microservice** architecture.
       <p align='center'>
         <img src='https://i.ibb.co/L6Z6wdJ/pixelshare-arch-drawio-2.png' alt='Logo' width='600'>
       </p>
+      
+    **Deployment:** Currently, to keep all our deployments free of cost we plan to use [Vercel](https://vercel.com/) for frontend services and [Supabase](https://supabase.com/) for database and storage. We plan to run our machine learning services in [Lambda GPU Cloud](https://lambdalabs.com/) or local machines (for testing).
+      <p align='center'>
+        <img src='https://www.vectorlogo.zone/logos/vercel/vercel-ar21.svg' alt='Logo' width='150'>
+        <img src='https://www.vectorlogo.zone/logos/supabase/supabase-ar21.svg' alt='Logo' width='200'>
+      </p>
+      
+    
       
   
     
