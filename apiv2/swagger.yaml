@@ -6,13 +6,13 @@ info:
     Welcome to the PixelShare API Documentation!
 
     ## Project Overview
-    Welcome to PixelShare - Where Creativity Finds a Home!
+    Welcome to PixelShare - Where Moments are Shared and Creativity Finds a Home!
     
     🌐 **GitHub Repository:**
     Explore the source code on [GitHub](https://github.com/risenfromashes/pixelshare).
 
     🎨 **About PixelShare:**
-    PixelShare is an innovative platform that celebrates visual storytelling, bringing together a vibrant community. Whether you're a photographer, or simply someone who loves sharing moments, PixelShare enables you to share wonderful moments with your friends and showcase your creativity.
+    PixelShare is an innovative platform that celebrates visual storytelling, bringing together a vibrant community. Whether you're a photographer, or simply someone who loves sharing pictures, PixelShare enables you to share wonderful moments with your friends and showcase your creativity.
 
     ## Features
     - **User Profile Management:**
@@ -90,13 +90,20 @@ info:
       <p align='center'>
         <img src='https://i.ibb.co/L6Z6wdJ/pixelshare-arch-drawio-2.png' alt='Logo' width='600'>
       </p>
+
       
+    **Containerization:** Our services will be containerized using [docker](https://www.docker.com/) and in the future we would like to use [kubernetes](https://kubernetes.io/) to manage and scale our microservices. But at the moment we are going to host our services on seperate managed platforms to save cost.
+      <p align='center'>
+        <img src='https://www.vectorlogo.zone/logos/docker/docker-ar21.svg' alt='Logo' width='200'>
+      </p>
+      
+            
     **Deployment:** Currently, to keep all our deployments free of cost we plan to use [Vercel](https://vercel.com/) for frontend services and [Supabase](https://supabase.com/) for database and storage. We plan to run our machine learning services in [Lambda GPU Cloud](https://lambdalabs.com/) or local machines (for testing).
       <p align='center'>
         <img src='https://www.vectorlogo.zone/logos/vercel/vercel-ar21.svg' alt='Logo' width='150'>
         <img src='https://www.vectorlogo.zone/logos/supabase/supabase-ar21.svg' alt='Logo' width='200'>
+        <img src='https://lambdalabs.com/hubfs/logos/lambda-logo.svg' alt='Logo' width='170'>
       </p>
-      
     
       
   
