@@ -87,7 +87,9 @@ info:
       </p>
       
     **Architecture:** Our system will be built using the microservice architecture.
-      
+      <p align='center'>
+        <img src='https://i.ibb.co/L6Z6wdJ/pixelshare-arch-drawio-2.png' alt='Logo' width='600'>
+      </p>
       
   
     
