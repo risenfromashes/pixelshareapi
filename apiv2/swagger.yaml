@@ -1656,6 +1656,8 @@ paths:
   /notifications/{user-id}:
     get:
       summary: Get user notifications
+      tags:
+        - Notification
       description: Retrieve notifications for a specific user.
       parameters:
         - name: user-id
@@ -1688,6 +1690,8 @@ paths:
   /notifications/mark-as-read/{user-id}:
     put:
       summary: Mark notifications as read
+      tags: 
+        - Notification
       description: Mark all notifications as read for a specific user.
       parameters:
         - name: user-id
