@@ -189,12 +189,30 @@ paths:
                 $ref: '#/components/schemas/inline_response_200_1'
         '400':
           description: Internal Error
-  /get-posts:
+  /get-posts/{page}/{pageSize}:
     summary: Operations related to posts
     get:
       summary: Get all posts
       tags:
         - Posts
+      parameters:
+        - name: page
+          in: path
+          description: Page number where default value is 1
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          in: path
+          description: Number of items per page where default is 10
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
       responses:
         '200':
           description: Successful response
