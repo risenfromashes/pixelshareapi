@@ -88,7 +88,7 @@ info:
       
     **Architecture:** Our system will be built using the **microservice** architecture.
       <p align='center'>
-        <img src='https://i.ibb.co/6r4H9MF/pixelshare-arch-drawio-3.png' alt='Logo' width='800'>
+        <img src='https://i.ibb.co/6r4H9MF/pixelshare-arch-drawio-3.png' alt='Logo' width='600'>
       </p>
 
       
@@ -107,15 +107,21 @@ info:
     
       
   
-    
+        
+    **<p>A1-Group7</p>**
+    <p>1905005- Ashrafur Rahman</p>
+    <p>1905012 - Faria Binta Awal</p>
+    <p>1905022 - Fatema Tuj Johora</p>
     
     
 
   
 
   contact:
-    name: Faria Binta Awal Moushe
+    name: PixelShare Helpline
     email: faria12mou@gmail.com
+  
+
   version: 1.0.1
 servers:
   # Added by API Auto Mocking Plugin
@@ -201,17 +207,23 @@ paths:
                   properties:
                     post_id:
                       type: integer
+                      example: 1
                     user_id:
                       type: integer
+                      example: 12
                     username:
                       type: string
+                      example: 'faria12mou'
                     image_url:
                       type: string
+                      example: 'https://i.imgur.com/1.jpg'
                     caption:
                       type: string
+                      example: 'This is a caption'
                     created_at:
                       type: string
                       format: date-time
+                      example: '2021-08-01T00:00:00.000Z'
   /approve-post/{post_id}:
       post:
         summary: Approve a post by post_id
@@ -353,6 +365,7 @@ paths:
             description: ID of the group to view all members
             schema:
               type: integer
+              example: 1
       tags:
         - Members
       responses:
@@ -367,10 +380,13 @@ paths:
                   properties:
                     username:
                       type: string
+                      example: 'faria12mou'
                     email:
                       type: string
+                      example: 'fariamou12@gmail.com'
                     registration_status:
                       type: string
+                      example: 'approved'
                       description: Status of member registration (e.g., "pending", "approved", "rejected")
 
   /member-approve/{user_id}:
@@ -484,12 +500,16 @@ paths:
                   properties:
                     user_id:
                       type: integer
+                      example : 1
                     username:
                       type: string
+                      example: 'faria12mou'
                     email:
                       type: string
+                      example: 'fariamou12@gmail.com'
                     registration_status:
                       type: string
+                      example: 'pending'
                       description: Status of member registration (e.g., "pending")
                       
   /remove-member/{user_id}:
@@ -551,18 +571,23 @@ paths:
                 properties:
                   username:
                     type: string
+                    example: 'faria12mou'
                   is_admin:
                     type: boolean
+                    example: false
                   profile_picture:
                     type: string
                     format: uri
+                    example: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F677651075174521837%2F&psig=AOvVaw0QZ6Z4Z4'
                   email:
                     type: string
                     example: faria12mou@gmail.com
                   bio:
                     type: string
+                    example: 'I am a student'
                   address:
                     type: string
+                    example: 'Dhaka, Bangladesh'
         '404':
           description: Member not found
           content:
@@ -589,17 +614,22 @@ paths:
                   properties:
                     tag_name:
                       type: string
+                      example: 'tag1'
                     username:
                       type: string
+                      example: 'faria12mou'
                     time:
                       type: string
                       format: date-time
+                      example: '2021-04-01T00:00:00Z'
                     group_id:
                       type: integer
+                      example: 1
         
                     description:
                      type: string
                      description: Description of the tag
+                     example: 'This is a tag'
       tags:
         - Tags
       responses:
@@ -934,15 +964,19 @@ paths:
                 type:
                   type: string
                   description: Type of content to search for (e.g., post, user, etc.)
+                  example: post
                 orderby:
                   type: string
                   description: Field to order the results by (e.g., date, relevance, etc.)
+                  example: date
                 query:
                   type: string
                   description: Search query string
+                  example: "CSE FEST"
                 topic:
                   type: string
                   description: Topic to narrow down the search
+                  example: "CSE FEST'23"
       responses:
         '200':
           description: Successful search
@@ -959,19 +993,30 @@ paths:
                       properties:
                         post_id:
                           type: integer
+                          example: 1
+                      
                         caption:
                           type: string
+                          example: "CSE FEST'23"
                         group_id:
                           type: integer
+                          example: 1
                         username:
                           type: string
+                          example: "aomy22"
                         date:
                           type: string
                           format: date
+                          example: "2021-04-01"
                         images:
                           type: array
                           items:
                             type: object
+                            example: 
+                              image_id: 1
+                              image_url: "https://www.google.com"
+                              image_type: "jpg"
+
                             
                                 
                           
@@ -1608,8 +1653,93 @@ paths:
                   message:
                     type: string
                     example: The specified rule ID does not exist
+  /notifications/{user-id}:
+    get:
+      summary: Get user notifications
+      description: Retrieve notifications for a specific user.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotificationsResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
+
+  /notifications/mark-as-read/{user-id}:
+    put:
+      summary: Mark notifications as read
+      description: Mark all notifications as read for a specific user.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          description: ID of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Notifications marked as read successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarkAsReadResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: User not found
+                  message:
+                    type: string
+                    example: The specified user ID does not exist
 components:
   schemas:
+    UserNotificationsResponse:
+      type: object
+      properties:
+        notifications:
+          type: array
+          description: List of user notifications
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              message:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+    MarkAsReadResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Notifications marked as read successfully
     UserRulesResponse:
       type: object
       properties:
@@ -1704,30 +1834,40 @@ components:
       properties:
         user_id:
           type: integer
+          example: 1
         username:
           type: string
+          example: 'fariamou12'
         email:
           type: string
+          example: 'fariamou12@gmail.com'
         bio:
           type: string
+          example: 'I am a student of BUET'
         profile_picture:
           type: string
           format: uri
+          example: 'https://i.imgur.com/4H1kdeY.jpg'
         posts:
           type: array
           description: List of posts by the user
+          
           items:
             type: object
             properties:
               post_id:
-                type: integer
+                type: integer 
+                example: 1
               title:
                 type: string
+                example: 'My first post'
               content:
                 type: string
+                example: 'This is my first post'
               date:
                 type: string
                 format: date-time
+                example: '2021-04-01T00:00:00.000Z'
         groups:
           type: array
           description: List of groups the user is a part of
@@ -1736,8 +1876,10 @@ components:
             properties:
               group_id:
                 type: integer
+                example: 1
               group_name:
                 type: string
+                example: 'BUET CSE-19'
     LikeResponse:
       type: object
       properties:
@@ -1756,6 +1898,7 @@ components:
       properties:
         comment_text:
           type: string
+          example: 'This is a comment'
 
     AddCommentResponse:
       type: object
@@ -1773,6 +1916,7 @@ components:
             properties:
               tag_name:
                 type: string
+                example: 'BUET CSE-19'
         images:
           type: array
           items:
@@ -1780,12 +1924,15 @@ components:
             properties:
               image_id:
                 type: integer
+                example: 1
              
         caption:
           type: string
+          example: 'This is a post'
         date:
           type: string
           format: date-time
+          example: '2021-04-01T00:00:00.000Z'
         
 
     AddPostResponse:
@@ -1805,21 +1952,28 @@ components:
             properties:
               post_id:
                 type: integer
+                example: 1
               title:
                 type: string
+                example: 'My first post'
               content:
                 type: string
+                example: 'This is my first post'
               date:
                 type: string
                 format: date-time
+                example: '2021-04-01T00:00:00.000Z'
               recommendation_index:
                 type: number
+                example: 0.5
               groups:
                 type: array
                 items:
                   type: string
+                  example: 'BUET CSE-19'
               seen_by_user:
                 type: boolean
+                example: true
               tags:
                 type: array
                 items:
@@ -1827,8 +1981,10 @@ components:
                   properties:
                     tag_id:
                       type: integer
+                      example: 1
                     tag_name:
                       type: string
+                      example: 'BUET CSE-19'
                     images:
                       type: array
                       items:
@@ -1836,24 +1992,31 @@ components:
                         properties:
                           image_id:
                             type: integer
+                            example: 1
     register_body:
       type: object
       properties:
         username:
           type: string
+          example: 'fariamou12'
         email:
           type: string
           format: email
+          example: 'fariamou12@gmail.com'
         password:
           type: string
           format: password
+          example: '123456'
     login_body:
       type: object
       properties:
         username:
           type: string
+          example: 'fariamou12'
         password:
           type: string
+          format: password
+          example: '123456'
     inline_response_200:
       type: object
       properties:
@@ -1886,15 +2049,20 @@ components:
       properties:
         post_id:
           type: integer
+          example: 1
         username:
           type: string
+          example: 'fariamou12'
         image_url:
           type: string
+          format: uri
         caption:
           type: string
+          example: 'This is a post'
         created_at:
           type: string
           format: date-time
+          example: '2021-04-01T00:00:00.000Z'
         tags:
           type: array
           items:
@@ -1920,13 +2088,17 @@ components:
             properties:
               image_id:
                 type: integer
+                example: 1
               caption:
                 type: string
+                example: 'This is a post'
               post_id:
                 type: integer
+                example: 1
               date:
                 type: string
                 format: date
+                example: '2021-04-01'
     ImagesByTagResponse:
       type: object
       properties:
@@ -1938,10 +2110,14 @@ components:
             properties:
               image_id:
                 type: integer
+                example: 1
               caption:
                 type: string
+                example: 'This is a post'
               post_id:
                 type: integer
+                example: 1
               date:
                 type: string
                 format: date
+                example: '2021-04-01'
